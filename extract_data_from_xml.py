@@ -39,7 +39,7 @@ def extract_pn(infNFe, type):
     tags = ('CNPJ', 'CPF', 'xNome', 'xFant', 'IE', 'email')
     emit_dict = extract_value_from_tag(emit, tags)
     tags = ('xLgr', 'nro', 'xBairro', 'cMun', 'xMun', 'UF', 'CEP', 'cPais',
-            'xPais', 'fone')
+            'xPais', 'fone', 'xCpl')
     ender_emit_dict = extract_value_from_tag(ender_emit, tags)
     emit_dict.update(ender_emit_dict)
     return emit_dict
