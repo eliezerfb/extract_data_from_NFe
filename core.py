@@ -54,6 +54,7 @@ nf_transp_temp_table = Table(
     Column('valor_nf', Numeric(18, 2)),
     Column('peso_l', Numeric(18, 4)),
     Column('peso_b', Numeric(18, 4)),
+    Column('quantidade', Numeric(18, 4)),
     Column('data_emissao', Date()),
     Column('file_name', LargeBinary())
 )
@@ -120,6 +121,7 @@ def insert_nf_transp_temp(manifesto_id, nfe_dict, file_name):
                              valor_nf=nfe_dict['total']['vNF'],
                              peso_l=nfe_dict['vol']['pesoL'],
                              peso_b=nfe_dict['vol']['pesoB'],
+                             quantidade=nfe_dict['vol']['qVol'],
                              file_name=file_name)
 
         conn.execute(new_nfe)

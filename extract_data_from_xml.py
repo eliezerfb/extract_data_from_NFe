@@ -56,7 +56,7 @@ def extract_total(infNFe):
 def extract_vol(infNFe):
     transp = infNFe.find('ns:transp', NS)
     vol = transp.find('ns:vol', NS)
-    tags = ('pesoL', 'pesoB')
+    tags = ('pesoL', 'pesoB', 'qVol')
     vol_dict = extract_value_from_tag(vol, tags)
     return {t: float(vol_dict[t]) for t in tags}
 

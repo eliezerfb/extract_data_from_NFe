@@ -68,5 +68,5 @@ class ExtractNFeDataTest(unittest.TestCase):
         self.assertEqual(self.nfe_data['total'], expected)
 
     def test_vol(self):
-        expected = dict(pesoL=1470.000, pesoB=1526.66)
+        expected = dict(pesoL=1470.000, pesoB=1526.66, qVol=49)
         self.assertEqual(self.nfe_data['vol'], expected)
