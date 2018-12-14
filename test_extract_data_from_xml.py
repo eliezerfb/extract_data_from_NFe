@@ -6,6 +6,16 @@ import unittest
 from extract_data_from_xml import extract_nfe_data
 
 
+def teste_cast(value, cast):
+    return cast(value)
+
+
+class TestCast(unittest.TestCase):
+    def test_cast(self):
+        value = teste_cast('1', lambda x: int(x))
+        self.assertEqual(value, 1)
+
+
 class ExtractNFeDataTestInvalidXML(unittest.TestCase):
     def test_invalid_xml(self):
         self.assertEqual(extract_nfe_data(''), None)
@@ -67,6 +77,6 @@ class ExtractNFeDataTest(unittest.TestCase):
         expected = dict(vNF=13474.18, vProd=12832.53)
         self.assertEqual(self.nfe_data['total'], expected)
 
-    def test_vol(self):
-        expected = dict(pesoL=1470.000, pesoB=1526.66, qVol=49)
-        self.assertEqual(self.nfe_data['vol'], expected)
+    def test_transp(self):
+        expected = dict(modFrete=0, pesoL=1470.000, pesoB=1526.66, qVol=49.0)
+        self.assertEqual(self.nfe_data['transp'], expected)

@@ -15,11 +15,11 @@ def parse_xml(file_name):
         return None
 
 
-def extract_value_from_tag(node, tags):
+def extract_value_from_tag(node, tags, cast=lambda x: x):
     values = {}
     for t in tags:
         tag = node.find(f'ns:{t}', NS)
-        values[t] = '' if tag is None else tag.text
+        values[t] = '' if tag is None else cast(tag.text)
     return values
 
 
@@ -49,16 +49,19 @@ def extract_total(infNFe):
     total = infNFe.find('ns:total', NS)
     ICMSTot = total.find('ns:ICMSTot', NS)
     tags = ('vNF', 'vProd')
-    ICMSTot_dict = extract_value_from_tag(ICMSTot, tags)
-    return {t: float(ICMSTot_dict[t]) for t in tags}
+    ICMSTot_dict = extract_value_from_tag(ICMSTot, tags,
+                                          cast=lambda x: float(x))
+    return ICMSTot_dict
 
 
-def extract_vol(infNFe):
+def extract_transp(infNFe):
     transp = infNFe.find('ns:transp', NS)
+    tags = ('modFrete', )
+    transp_dict = extract_value_from_tag(transp, tags, cast=lambda x: int(x))
     vol = transp.find('ns:vol', NS)
     tags = ('pesoL', 'pesoB', 'qVol')
-    vol_dict = extract_value_from_tag(vol, tags)
-    return {t: float(vol_dict[t]) for t in tags}
+    vol_dict = extract_value_from_tag(vol, tags, cast=lambda x: float(x))
+    return dict(vol_dict, **transp_dict)
 
 
 def extract_nfe_data(file_name):
@@ -73,4 +76,4 @@ def extract_nfe_data(file_name):
                 emit=extract_pn(infNFe, type='emit'),
                 dest=extract_pn(infNFe, type='dest'),
                 total=extract_total(infNFe),
-                vol=extract_vol(infNFe))
+                transp=extract_transp(infNFe))

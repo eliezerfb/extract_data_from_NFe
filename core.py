@@ -56,6 +56,7 @@ nf_transp_temp_table = Table(
     Column('peso_b', Numeric(18, 4)),
     Column('quantidade', Numeric(18, 4)),
     Column('data_emissao', Date()),
+    Column('tipo_frete', Integer),
     Column('file_name', LargeBinary())
 )
 
@@ -119,9 +120,10 @@ def insert_nf_transp_temp(manifesto_id, nfe_dict, file_name):
                              dest_email=nfe_dict['dest']['email'],
                              dest_fone=nfe_dict['dest']['fone'],
                              valor_nf=nfe_dict['total']['vNF'],
-                             peso_l=nfe_dict['vol']['pesoL'],
-                             peso_b=nfe_dict['vol']['pesoB'],
-                             quantidade=nfe_dict['vol']['qVol'],
+                             peso_l=nfe_dict['transp']['pesoL'],
+                             peso_b=nfe_dict['transp']['pesoB'],
+                             quantidade=nfe_dict['transp']['qVol'],
+                             tipo_frete=nfe_dict['transp']['modFrete'],
                              file_name=file_name)
 
         conn.execute(new_nfe)
