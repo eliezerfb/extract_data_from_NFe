@@ -6,16 +6,6 @@ import unittest
 from extract_data_from_xml import extract_nfe_data
 
 
-def teste_cast(value, cast):
-    return cast(value)
-
-
-class TestCast(unittest.TestCase):
-    def test_cast(self):
-        value = teste_cast('1', lambda x: int(x))
-        self.assertEqual(value, 1)
-
-
 class ExtractNFeDataTestInvalidXML(unittest.TestCase):
     def test_invalid_xml(self):
         self.assertEqual(extract_nfe_data(''), None)
