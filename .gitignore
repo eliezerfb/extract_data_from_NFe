@@ -6,3 +6,4 @@ __pycache__
 *.dcu
 *.local
 *.res
+log.txt

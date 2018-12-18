@@ -27,7 +27,7 @@ uses ShellAPI;
 
 procedure TForm2.Button1Click(Sender: TObject);
 begin
-  ShellExecute(0, nil, PChar('cmd.exe '), PChar('/c python D:\GitHubProjects\extract_data_from_NFe\is_ok.py'), nil, SW_HIDE);
+  ShellExecute(0, nil, PChar('cmd.exe '), PChar('/c python is_ok.py > log.txt'), nil, SW_HIDE);
 end;
 
 end.

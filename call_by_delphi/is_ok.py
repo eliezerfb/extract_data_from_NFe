@@ -1,3 +1,6 @@
 from tkinter import messagebox
 
-messagebox.showinfo("Python", "it's OK! Python is running!")
+
+messagebox.showinfo("Python", "It's OK! Python is running!")
+
+print("It's OK! Python is running!"")
