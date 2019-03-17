@@ -158,6 +158,13 @@
 					<pesoL>1470.000</pesoL>
 					<pesoB>1526.660</pesoB>
 				</vol>
+				<vol>
+					<qVol>1</qVol>
+					<esp>CAIXA</esp>
+					<marca>VIPAL.</marca>
+					<pesoL>2</pesoL>
+					<pesoB>3</pesoB>
+				</vol>				
 			</transp>
 			<cobr>
 				<fat>

@@ -58,9 +58,18 @@ def extract_transp(infNFe):
     transp = infNFe.find('ns:transp', NS)
     tags = ('modFrete', )
     transp_dict = extract_value_from_tag(transp, tags, cast=lambda x: int(x))
+
     vol = transp.find('ns:vol', NS)
     tags = ('pesoL', 'pesoB', 'qVol')
-    vol_dict = extract_value_from_tag(vol, tags, cast=lambda x: float(x))
+
+    vol_dict = {key: 0 for key in tags}
+
+    vol_list = transp.findall(f'ns:vol', NS)
+    for vol_node in vol_list:
+        vol = extract_value_from_tag(vol_node, tags, cast=lambda x: float(x))
+        for t in tags:
+            vol_dict[t] += vol[t]
+
     return dict(vol_dict, **transp_dict)
 
 
